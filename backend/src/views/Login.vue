@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="text-sm">
-                    <router-link to="/request-password" href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Ti-ai uitat parola?</router-link>
+                    <router-link :to="{name: 'request-password'}"  class="font-medium text-indigo-600 hover:text-indigo-500">Ti-ai uitat parola?</router-link>
                 </div>
             </div>
 
