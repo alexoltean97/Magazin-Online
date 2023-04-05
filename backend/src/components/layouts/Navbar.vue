@@ -16,7 +16,7 @@
                             src="https://randomuser.me/api/portraits/men/22.jpg"
                             alt="userimage"
                         />
-                        <small>John Smith</small>
+                        <small>{{currentUser.name}}</small>
                         <ChevronDownIcon class="h-5 w-5 text-violet-200 hover:text-violet-100" aria-hidden="true" />
                     </MenuButton>
                 </div>
@@ -78,6 +78,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ChevronDownIcon, ArrowDownLeftIcon, UsersIcon } from '@heroicons/vue/20/solid';
 import store from "../../store/index.js";
 import router from "../../router/index.js";
+import {computed} from "vue";
 
 export default {
     name: 'TopHeader',
@@ -93,6 +94,9 @@ export default {
     },
 
     setup(){
+
+        const currentUser = computed(() => store.state.user.data)
+
         function logout(){
             store.dispatch('logout')
                 .then(() => {
@@ -100,7 +104,7 @@ export default {
                 })
         }
 
-        return { logout }
+        return { currentUser,logout }
     }
 };
 </script>
