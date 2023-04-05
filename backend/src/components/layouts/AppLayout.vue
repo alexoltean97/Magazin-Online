@@ -4,7 +4,7 @@
         <Sidebar :class="{'-ml-[200px]': !sideBarOpened}"></Sidebar>
 
         <div class="flex-1">
-           <TopHeader @toggle-sidebar="toggleSidebar"></TopHeader>
+           <Navbar @toggle-sidebar="toggleSidebar"></Navbar>
 
             <main class="p-6">
                 <div class="p-4 rounded bg-white">
@@ -19,9 +19,10 @@
 <script>
 import Sidebar from "./Sidebar.vue";
 import TopHeader from "./TopHeader.vue";
+import Navbar from "./Navbar.vue";
 export default {
     name: "AppLayout",
-    components: {TopHeader, Sidebar},
+    components: {TopHeader, Sidebar, Navbar},
 
 
     data(){
@@ -33,7 +34,20 @@ export default {
     methods:{
         toggleSidebar(){
             this.sideBarOpened = !this.sideBarOpened;
+        },
+
+        handleSideBarOpened(){
+            this.sideBarOpened = window.outerWidth > 768;
         }
+    },
+
+    mounted(){
+        this.handleSideBarOpened()
+        window.addEventListener('resize', this.handleSideBarOpened)
+    },
+
+    unmounted() {
+        window.removeEventListener('resize', this.handleSideBarOpened)
     }
 
 
