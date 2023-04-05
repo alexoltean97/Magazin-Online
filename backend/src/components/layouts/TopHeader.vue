@@ -42,7 +42,7 @@
                                         active
                                             ? 'bg-violet-500 text-white'
                                             : 'text-gray-900',
-                                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                        'group flex w-full items-center rounded-md px-2 py-2 text-sm'
                                     ]"
                                 >
                                     <UsersIcon
@@ -59,7 +59,7 @@
                                         active
                                             ? 'bg-violet-500 text-white'
                                             : 'text-gray-900',
-                                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                        'group flex w-full items-center rounded-md px-2 py-2 text-sm'
                                     ]"
                                 >
                                     <ArrowDownLeftIcon
@@ -79,16 +79,12 @@
 </template>
 
 <script>
-import { Bars3Icon } from "@heroicons/vue/20/solid";
-import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-import {
-    ChevronDownIcon,
-    ArrowDownLeftIcon,
-    UsersIcon,
-} from "@heroicons/vue/20/solid";
+import { Bars3Icon } from '@heroicons/vue/20/solid';
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
+import { ChevronDownIcon, ArrowDownLeftIcon, UsersIcon } from '@heroicons/vue/20/solid';
 
 export default {
-    name: "TopHeader",
+    name: 'TopHeader',
     components: {
         Bars3Icon,
         Menu,
@@ -97,8 +93,8 @@ export default {
         MenuItem,
         ChevronDownIcon,
         ArrowDownLeftIcon,
-        UsersIcon,
-    },
+        UsersIcon
+    }
 };
 </script>
 
