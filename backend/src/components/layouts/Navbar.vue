@@ -50,6 +50,7 @@
                             </MenuItem>
                             <MenuItem v-slot="{ active }">
                                 <button
+                                    @click="logout()"
                                     :class="[
                                         active ? 'bg-violet-500 text-white' : 'text-gray-900',
                                         'group flex w-full items-center rounded-md px-2 py-2 text-sm'
@@ -75,6 +76,8 @@
 import { Bars3Icon } from '@heroicons/vue/20/solid';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ChevronDownIcon, ArrowDownLeftIcon, UsersIcon } from '@heroicons/vue/20/solid';
+import store from "../../store/index.js";
+import router from "../../router/index.js";
 
 export default {
     name: 'TopHeader',
@@ -87,6 +90,17 @@ export default {
         ChevronDownIcon,
         ArrowDownLeftIcon,
         UsersIcon
+    },
+
+    setup(){
+        function logout(){
+            store.dispatch('logout')
+                .then(() => {
+                    router.push({name: 'login'})
+                })
+        }
+
+        return { logout }
     }
 };
 </script>
