@@ -17,6 +17,7 @@
 import Sidebar from "./Sidebar.vue";
 import TopHeader from "./TopHeader.vue";
 import Navbar from "./Navbar.vue";
+import store from "../../store/index.js";
 export default {
     name: "AppLayout",
     components: { TopHeader, Sidebar, Navbar },
@@ -38,6 +39,7 @@ export default {
     },
 
     mounted() {
+        store.dispatch('getUser')
         this.handleSideBarOpened();
         window.addEventListener("resize", this.handleSideBarOpened);
     },
