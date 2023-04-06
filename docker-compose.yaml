@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    volumes:
+      - ./backend:/var/www/html/backend
+      - ./frontend:/var/www/html/frontend
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=laravel_vue_commerce
+      - DB_USERNAME=root
+      - DB_PASSWORD=admin123
+
+  db:
+    image: mysql:latest
+    container_name: db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=laravel_vue_commerce
+      - MYSQL_ROOT_PASSWORD=admin123
+    volumes:
+      - db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_ROOT_PASSWORD=admin123
+
+volumes:
+  db:
