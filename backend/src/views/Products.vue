@@ -50,19 +50,19 @@
                     <tr v-for="product of products.data">
                         <td class="border-b pb-2">{{ product.id }}</td>
                         <td class="border-b pb-2">
-                            <img class="w-16" :src="product.image" :alt="product.title"/>
+                            <img class="w-16" :src="product.image" :alt="product.title" />
                         </td>
 
                         <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
-                            {{product.title}}
+                            {{ product.title }}
                         </td>
 
                         <td class="border-b p-2">
-                            {{product.price}}
+                            {{ product.price }}
                         </td>
 
                         <td class="border-b p-2">
-                            {{product.updated_at}}
+                            {{ product.updated_at }}
                         </td>
                     </tr>
                 </tbody>
@@ -72,33 +72,31 @@
 </template>
 
 <script>
-import Spinner from "../components/core/Spinner.vue";
-import {computed, ref, onMounted} from "vue";
-import state from "../store/state.js";
-import store from "../store/index.js";
+import Spinner from '../components/core/Spinner.vue';
+import { computed, ref, onMounted } from 'vue';
+import state from '../store/state.js';
+import store from '../store/index.js';
 
 export default {
     name: 'Products',
-    components: {Spinner},
+    components: { Spinner },
+
     setup() {
+        const perPage = ref(10);
+        const search = ref('');
+        const products = computed(() => state.products);
 
-        const perPage = ref(10)
-        const search = ref('')
-        const products = computed( () => state.products)
-
-
-        function getProducts(){
-            store.dispatch('getProducts')
+        function getProducts() {
+            store.dispatch('getProducts');
         }
 
-        onMounted(() =>{
-            getProducts();
-
+        onMounted(async () =>{
+         await  getProducts()
         })
 
-        return {perPage, search, products}
+        return { perPage, search, products, getProducts };
+    },
 
-    }
 };
 </script>
 
