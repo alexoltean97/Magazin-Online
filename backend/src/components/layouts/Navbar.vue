@@ -76,7 +76,7 @@
 import { Bars3Icon } from '@heroicons/vue/20/solid';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ChevronDownIcon, ArrowDownLeftIcon, UsersIcon } from '@heroicons/vue/20/solid';
-import store from "../../store/index.js";
+import state from "../../store/index.js";
 import router from "../../router/index.js";
 import {computed} from "vue";
 
@@ -95,10 +95,10 @@ export default {
 
     setup(){
 
-        const currentUser = computed(() => store.state.user.data)
+        const currentUser = computed(() => state.state.user.data)
 
         function logout(){
-            store.dispatch('logout')
+            state.dispatch('logout')
                 .then(() => {
                     router.push({name: 'login'})
                 })

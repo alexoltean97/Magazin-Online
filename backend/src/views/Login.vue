@@ -118,7 +118,7 @@
 import { LockClosedIcon } from '@heroicons/vue/20/solid';
 import GuestLayout from '../components/layouts/GuestLayout.vue';
 import { ref } from 'vue';
-import store from '../store/index.js';
+import state from '../store/index.js';
 import router from '../router/index.js';
 
 export default {
@@ -140,7 +140,7 @@ export default {
 
         function login() {
             loading.value = true;
-            store
+            state
                 .dispatch('login', user)
                 .then(() => {
                     loading.value = false;
