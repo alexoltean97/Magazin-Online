@@ -1,17 +1,17 @@
 <template>
     <div class="flex items-center justify-between mb-3">
-        <h1 class="text-3xl font-semibold">Products</h1>
+        <h1 class="text-3xl font-semibold">Produse</h1>
         <button
             type="button"
             class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline:none focus:ring-offset-2 focus:ring-indigo-500"
         >
-            Add new Product
+            Adauga produs
         </button>
     </div>
 
     <div class="bg-white p-4 rounded-lg shadow">
         <div class="flex items-center">
-            <span class="whitespace-nowrap mr-3"> Per Page </span>
+            <span class="whitespace-nowrap mr-3"> Produse pe pagina: </span>
         </div>
 
         <div>
@@ -36,27 +36,25 @@
                 placeholder="Type to Search products"
             />
         </div>
-        <Spinner v-if="products.loading" />
 
-        <template v-else>
+
             <table class="table-auto w-full">
                 <thead>
                     <tr>
                         <TableHeaderCell
                             @click="sortProducts"
                             class="border-b-2 p-2 text-left"
-                            field="id"
+                             field="id"
                             :sort-field="sortField"
                             :sort-direction="sortDirection"
                             >ID</TableHeaderCell
                         >
                         <TableHeaderCell
-                            @click="sortProducts"
                             class="border-b-2 p-2 text-left"
-                            field="image"
+                            field=""
                             :sort-field="sortField"
                             :sort-direction="sortDirection"
-                            >Image</TableHeaderCell
+                            >Imagine</TableHeaderCell
                         >
                         <TableHeaderCell
                             @click="sortProducts"
@@ -64,7 +62,7 @@
                             field="title"
                             :sort-field="sortField"
                             :sort-direction="sortDirection"
-                            >Title</TableHeaderCell
+                            >Titlu</TableHeaderCell
                         >
                         <TableHeaderCell
                             @click="sortProducts"
@@ -72,7 +70,7 @@
                             field="price"
                             :sort-field="sortField"
                             :sort-direction="sortDirection"
-                            >Price</TableHeaderCell
+                            >Pret</TableHeaderCell
                         >
                         <TableHeaderCell
                             @click="sortProducts"
@@ -80,12 +78,20 @@
                             field="updated_at"
                             :sort-field="sortField"
                             :sort-direction="sortDirection"
-                            >Last Updated At</TableHeaderCell
+                            >Actualizat din:</TableHeaderCell
                         >
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody v-if="products.loading">
+                    <tr>
+                        <td colspan="5">
+                            <Spinner style="display: block; margin: 0 auto" class="my-4" v-if="products.loading" />
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tbody v-else>
                     <tr v-for="product of products.data">
                         <td class="border-b pb-2">{{ product.id }}</td>
                         <td class="border-b pb-2">
@@ -107,8 +113,8 @@
                 </tbody>
             </table>
 
-            <div class="flex justify-between items-center mt-5">
-                <span> Showing from {{ products.from }} to {{ products.to }} </span>
+            <div v-if="!products.loading" class="flex justify-between items-center mt-5">
+                <span> Arata de la {{ products.from }} to {{ products.to }} </span>
 
                 <nav
                     v-if="products.total > products.limit"
@@ -138,16 +144,16 @@
                     </a>
                 </nav>
             </div>
-        </template>
     </div>
+
 </template>
 
 <script>
-import Spinner from '../components/core/Spinner.vue';
+import Spinner from '../../components/core/Spinner.vue';
 import { computed, ref, onMounted } from 'vue';
-import store from '../store/index.js';
-import { PRODUCTS_PER_PAGE } from '../constants.js';
-import TableHeaderCell from '../components/Table/TableHeaderCell.vue';
+import store from '../../store/index.js';
+import { PRODUCTS_PER_PAGE } from '../../constants.js';
+import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 
 export default {
     name: 'Products',
