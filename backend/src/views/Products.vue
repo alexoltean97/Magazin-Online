@@ -67,6 +67,38 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="flex justify-between items-center mt-5">
+                <span> Showing from {{ products.from }} to {{ products.to }} </span>
+
+                <nav
+                    v-if="products.total > products.limit"
+                    class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px"
+                    aria-label="Pagination"
+                >
+                    <a
+                        v-if="products && products.links"
+                        v-for="(link, i) of products.links"
+                        :key="i"
+                        :disabled="!link.url"
+                        href="#"
+                        @click.prevent="getForPage($event, link)"
+                        aria-current="page"
+                        class="relative inline-flex items-center px-4 py-2 border text-sm font-medium whitespace-nowrap"
+                        :class="[
+                            link.active
+                                ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+                                : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
+
+                            i === 0 ? 'rounded-l-md' : '',
+                            i === products.links.length - 1 ? 'rounded-l-md' : '',
+                            !link.url ? 'bg-gray-100 text-gray 700' : ''
+                        ]"
+                        v-html="link.label"
+                    >
+                    </a>
+                </nav>
+            </div>
         </template>
     </div>
 </template>
@@ -75,27 +107,38 @@
 import Spinner from '../components/core/Spinner.vue';
 import { computed, ref, onMounted } from 'vue';
 import store from '../store/index.js';
+import { PRODUCTS_PER_PAGE } from '../constants.js';
 
 export default {
     name: 'Products',
     components: { Spinner },
 
     setup() {
-        const perPage = ref(10);
+        const perPage = ref(PRODUCTS_PER_PAGE);
         const search = ref('');
         const products = computed(() => store.state.products);
 
-        function getProducts() {
-            store.dispatch('getProducts');
+        function getProducts(url = null,search = '', perPage = 10) {
+            store.dispatch('getProducts', {
+                url,
+                search: search.value,
+                perPage: perPage.value
+            });
         }
 
-        onMounted( () =>{
-           getProducts()
-        })
+        function getForPage(event, link) {
+            if (!link.url || link.active) {
+                return;
+            }
+            getProducts(link.url);
+        }
 
-        return { perPage, search, products, getProducts };
-    },
+        onMounted(() => {
+            getProducts();
+        });
 
+        return { perPage, search, products, getProducts, getForPage };
+    }
 };
 </script>
 
