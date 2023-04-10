@@ -15,7 +15,11 @@
         </div>
 
         <div>
-            <select @change="getProducts(null)" v-model="perPage" class="">
+            <select
+                @change="getProducts(null)"
+                v-model="perPage"
+                class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            >
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -28,7 +32,7 @@
             <input
                 v-model="search"
                 @change="getProducts(null)"
-                class="appearance-none relative block w-48 px-3 py-2 border border-gray=300 placeholder-gray-500 text-gray-90 rounded-md"
+                class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Type to Search products"
             />
         </div>
@@ -118,7 +122,11 @@ export default {
         const search = ref('');
         const products = computed(() => store.state.products);
 
-        function getProducts(url = null,search = '', perPage = 10) {
+        onMounted(() => {
+            getProducts();
+        });
+
+        function getProducts(url = null, search = '', perPage = 10) {
             store.dispatch('getProducts', {
                 url,
                 search: search.value,
@@ -133,11 +141,7 @@ export default {
             getProducts(link.url);
         }
 
-        onMounted(() => {
-            getProducts();
-        });
-
-        return { perPage, search, products, getProducts, getForPage };
+        return { products, getProducts, getForPage, perPage, search };
     }
 };
 </script>
