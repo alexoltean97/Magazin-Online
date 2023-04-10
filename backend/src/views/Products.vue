@@ -74,7 +74,6 @@
 <script>
 import Spinner from '../components/core/Spinner.vue';
 import { computed, ref, onMounted } from 'vue';
-import state from '../store/state.js';
 import store from '../store/index.js';
 
 export default {
@@ -84,14 +83,14 @@ export default {
     setup() {
         const perPage = ref(10);
         const search = ref('');
-        const products = computed(() => state.products);
+        const products = computed(() => store.state.products);
 
         function getProducts() {
             store.dispatch('getProducts');
         }
 
-        onMounted(async () =>{
-         await  getProducts()
+        onMounted( () =>{
+           getProducts()
         })
 
         return { perPage, search, products, getProducts };
