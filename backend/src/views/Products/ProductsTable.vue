@@ -82,11 +82,15 @@
                 </tr>
             </tbody>
 
+
+<!--
+ To add in v-for
+ class="animate-fade-in-down"-->
+<!--            :style="{ 'animation-delay': `${index * 0.1}s` }"-->
+
             <tbody v-else>
                 <tr
                     v-for="(product, index) of products.data"
-                    class="animate-fade-in-down"
-                    :style="{ 'animation-delay': `${index * 0.1}s` }"
                 >
                     <td class="border-b pb-2">{{ product.id }}</td>
                     <td class="border-b pb-2">
