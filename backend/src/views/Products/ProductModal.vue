@@ -58,7 +58,7 @@
                                 </button>
                             </header>
 
-                            <form @submit.prevent="onsubmit">
+                            <form @submit.prevent="onSubmit">
                                 <div class="bg-white px-4 pb-4">
                                     <CustomInput class="mb-2" v-model="product.title" label="Titlu Produs" />
                                     <CustomInput

@@ -12,7 +12,7 @@
 
     <ProductModal v-model="showModal" :product="productModel" />
 
-    <ProductsTable />
+    <ProductsTable @clickEdit="editProduct" />
 
 </template>
 
@@ -20,6 +20,7 @@
 
 import ProductsTable from "./ProductsTable.vue";
 import ProductModal from "./ProductModal.vue";
+import store from "../../store/index.js";
 export default {
     name: 'Products',
     components: {ProductModal, ProductsTable},
@@ -39,6 +40,14 @@ export default {
     methods:{
         showProductModal(){
             this.showModal = true
+        },
+
+        editProduct(product){
+            store.dispatch('getProduct', product.id)
+                .then(({data}) =>{
+                   this.productModel.value = data
+                   this.showProductModal()
+                })
         }
     }
 
