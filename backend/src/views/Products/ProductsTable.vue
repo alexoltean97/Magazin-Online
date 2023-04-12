@@ -141,7 +141,7 @@
                                                     active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm'
                                                 ]"
-                                                @click="editProduct(product)"
+                                                @click="$emit('clickEdit', product)"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +233,7 @@
 <script>
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 import Spinner from '../../components/core/Spinner.vue';
-import { computed, onMounted, ref,defineEmits } from 'vue';
+import { computed, onMounted, ref, defineEmits } from 'vue';
 import { PRODUCTS_PER_PAGE } from '../../constants.js';
 import store from '../../store/index.js';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
@@ -247,9 +247,7 @@ export default {
         const products = computed(() => store.state.products);
         const sortField = ref('updated_at');
         const sortDirection = ref('desc');
-
-        const emit = defineEmits(['clickEdit'])
-
+        const emit = defineEmits(['clickEdit']);
         onMounted(() => {
             getProducts();
         });
@@ -285,10 +283,9 @@ export default {
             getProducts();
         }
 
-        function editProduct(product){
-            emit('clickEdit', product)
+        function editProduct(product) {
+            emit('clickEdit', product);
         }
-
 
         function deleteProduct(product) {
             if (!confirm(`Are you sure you want to delete the prodcut?`)) {
@@ -301,6 +298,7 @@ export default {
         }
 
         return {
+            emit,
             products,
             getProducts,
             getForPage,

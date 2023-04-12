@@ -34,7 +34,11 @@
 
                             <header class="py-3 px-4 flex justify-between items-center">
                                 <DialogTitle as="h3" class="text-lg leading-6 font-medium text-gray-900">
-                                    {{ product.id ? `Actualizați produs: "${props.product.title}"` : 'Adauga Produs nou' }}
+                                    {{
+                                        product.id
+                                            ? `Actualizați produs: "${props.product.title}"`
+                                            : 'Adauga Produs nou'
+                                    }}
                                 </DialogTitle>
 
                                 <button
