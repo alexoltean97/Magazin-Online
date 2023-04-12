@@ -10,7 +10,7 @@
         </button>
     </div>
 
-    <ProductModal v-model="showModal" :product="productModel" />
+    <ProductModal v-model="showModal" :product="productModel" @close="onModalClose"/>
 
     <ProductsTable @clickEdit="editProduct" />
 
@@ -45,9 +45,13 @@ export default {
         editProduct(product){
             store.dispatch('getProduct', product.id)
                 .then(({data}) =>{
-                   this.productModel.value = data
+                   this.productModel = data
                    this.showProductModal()
                 })
+        },
+
+        onModalClose(){
+            this.productModel = {}
         }
     }
 
