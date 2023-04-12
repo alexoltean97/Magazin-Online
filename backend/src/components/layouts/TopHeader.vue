@@ -17,10 +17,7 @@
                             alt="userimage"
                         />
                         <small>John Smith</small>
-                        <ChevronDownIcon
-                            class="h-5 w-5 text-violet-200 hover:text-violet-100"
-                            aria-hidden="true"
-                        />
+                        <ChevronDownIcon class="h-5 w-5 text-violet-200 hover:text-violet-100" aria-hidden="true" />
                     </MenuButton>
                 </div>
 
@@ -39,9 +36,7 @@
                             <MenuItem v-slot="{ active }">
                                 <button
                                     :class="[
-                                        active
-                                            ? 'bg-violet-500 text-white'
-                                            : 'text-gray-900',
+                                        active ? 'bg-violet-500 text-white' : 'text-gray-900',
                                         'group flex w-full items-center rounded-md px-2 py-2 text-sm'
                                     ]"
                                 >
@@ -56,9 +51,7 @@
                             <MenuItem v-slot="{ active }">
                                 <button
                                     :class="[
-                                        active
-                                            ? 'bg-violet-500 text-white'
-                                            : 'text-gray-900',
+                                        active ? 'bg-violet-500 text-white' : 'text-gray-900',
                                         'group flex w-full items-center rounded-md px-2 py-2 text-sm'
                                     ]"
                                 >

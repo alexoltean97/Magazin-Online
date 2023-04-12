@@ -82,16 +82,13 @@
                 </tr>
             </tbody>
 
-
-<!--
+            <!--
  To add in v-for
  class="animate-fade-in-down"-->
-<!--            :style="{ 'animation-delay': `${index * 0.1}s` }"-->
+            <!--            :style="{ 'animation-delay': `${index * 0.1}s` }"-->
 
             <tbody v-else>
-                <tr
-                    v-for="(product, index) of products.data"
-                >
+                <tr v-for="(product, index) of products.data">
                     <td class="border-b pb-2">{{ product.id }}</td>
                     <td class="border-b pb-2">
                         <img class="w-16" :src="product.image_url" :alt="product.title" />
