@@ -2,9 +2,15 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         @foreach($products as $product)
             <div
+                x-data="productItem({{json_encode([
+                    'id' => $product->id,
+                    'image' => $product->image,
+                    'title' => $product->title,
+                    'price' => $product->price
+                ])}}"
                 class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
             >
-                <a href="#" class="aspect-w-3 aspect-h-2 block overflow-hidden aspect-w-5 aspect-h-3">
+                <a href="{{route('product.view', $product->slug)}}" class="aspect-w-3 aspect-h-2 block overflow-hidden aspect-w-5 aspect-h-3">
                     <img
                         src="{{$product->image}}"
                         alt=""
@@ -13,7 +19,7 @@
                 </a>
                 <div class="p-4">
                     <h3 class="text-lg">
-                        <a href="#">
+                        <a href="{{route('product.view', $product->slug)}}">
                           {{$product->title}}
                         </a>
                     </h3>
