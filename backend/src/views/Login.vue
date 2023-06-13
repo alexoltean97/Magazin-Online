@@ -125,7 +125,12 @@ export default {
     name: 'Login',
     components: {
         LockClosedIcon,
-        GuestLayout
+        GuestLayout,
+
+
+        created(){
+             this.loading = true
+        }
     },
 
     setup() {

@@ -56,21 +56,18 @@ document.addEventListener("alpine:init", () => {
 
     Alpine.data("productItem", (product) => {
         return {
-            id: product.id,
             product,
-            quantity: 1,
-            addToCart( quantity = 1) {
-            post(this.product.addToCartUrl, {quantity})
-                .then(result => {
-                    this.$dispatch('cart-change', {count: result.count})
-                    this.$dispatch('notify', {
-                        message: "The item was added into the cart"
+            addToCart(quantity = 1) {
+                post(this.product.addToCartUrl, {quantity})
+                    .then(result => {
+                        this.$dispatch('cart-change', {count: result.count})
+                        this.$dispatch("notify", {
+                            message: "The item was added into the cart",
+                        });
                     })
-                })
-
-                .catch(response => {
-                    console.log(response)
-                })
+                    .catch(response => {
+                        console.log(response);
+                    })
             },
             removeItemFromCart() {
                 post(this.product.removeUrl)

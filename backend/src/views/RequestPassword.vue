@@ -1,5 +1,5 @@
 <template>
-    <guest-layout title="Cere o parola noua">
+    <guest-layout title="Request a new password">
         <form class="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" value="true" />
             <div class="-space-y-px rounded-md shadow-sm">
