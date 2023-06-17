@@ -24,6 +24,7 @@
                 @change="getProducts(null)"
                 class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Type to Search products"
+                style="float: right;position: relative; bottom: 40px;"
             />
         </div>
 
@@ -82,11 +83,6 @@
                 </tr>
             </tbody>
 
-            <!--
- To add in v-for
- class="animate-fade-in-down"-->
-            <!--            :style="{ 'animation-delay': `${index * 0.1}s` }"-->
-
             <tbody v-else>
                 <tr v-for="(product, index) of products.data">
                     <td class="border-b pb-2">{{ product.id }}</td>
@@ -110,7 +106,7 @@
                         <Menu as="div" class="relative inline-block text-left">
                             <div>
                                 <MenuButton
-                                    class="inline-flex items-center justify-center w-full justify-center rounded-full w-10 h-10 bg-black bg-opacity-0 text-sm font-medium text-white hover:bg-opacity-5 focus:bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                    class="inline-flex items-center justify-center w-full justify-center rounded-full w-10 h-10 bg-black bg-opacity-0 text-sm font-medium  hover:bg-opacity-5 focus:bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
